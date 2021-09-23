@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>clock</title>
+    </head>
+
+    <body>
+        <!--
+            bootstrap使えば簡単にできるけど，使うか迷う(CSS/JSの練習中やしな．．．)
+            → 使わないことにした．無しで頑張る
+        -->
+        <header>
+            <div class="navbar">
+                <span role="button" class="navbar-ele left" id="mainSwitch">
+                    <div class="navbar-ele left" id="now"></div>
+                </span>
+                <span role="button" onclick="showSettings()" class="navbar-ele right">
+                    <div class="navbar-ele right" id="mode"></div>
+                </span>
+                <div class="navbar-ele right">&emsp;/&emsp;</div>
+                <span role="button" onclick="showSettings()" class="navbar-ele">
+                    <div class="navbar-ele right" id="font"></div>
+                </span>
+            </div>
+        </header>
+
+        <hr>
+
+        <!-- ヘッダー部分の現在の設定をクリックするとこの部分が出現 -->
+        <div class="settings" id="settings" style="visibility: hidden;">
+            <div class="setting-title">settings</div>
+            <ul class="align-center no-dot">
+                <li class="align-left">
+                    <div class="mode-selectors">
+                        <span>mode: </span>
+                        <span class="button" role="button" onclick='updateMode("clock")'>clock</span>
+                        <span class="button" role="button" onclick='updateMode("stopwatch")'>stop watch</span>
+                        <span class="button" role="button" onclick='updateMode("timer")'>timer</span>
+                    </div>
+                </li>
+                <li class="align-left">
+                    <div class="font-selectors">
+                        <span>font: </span>
+                        <span class="button" role="button" onclick='updateFont("font-Stick")'>
+                            Stick
+                        </span>
+                        <span class="button" role="button" onclick='updateFont("font-GrechenFuemen")'>
+                            Grechen Fuemen
+                        </span>
+                        <span class="button" role="button" onclick='updateFont("font-BonheurRoyale")'>
+                            Bonheur Royale
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- メイン部分．JSで内容を切り替え． -->
+        <div class="main">
+            <div id="font-Stick" class="font-Stick"></div>
+            <div id="font-GrechenFuemen" class="font-GrechenFuemen"></div>
+            <div id="font-BonheurRoyale" class="font-BonheurRoyale"></div>
+        </div>
+
+        <!-- <footer>
+            <p class="copyright">Yuto02D2 &copy; 2021 All rights reserved.</p>
+        </footer> -->
+
+        <script src="./index.js"></script>
+    </body>
+
+</html>
