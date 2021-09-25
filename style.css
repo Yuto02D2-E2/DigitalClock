@@ -7,6 +7,25 @@
 @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&family=Stick&display=swap');
 
 
+/*
+とりあえずhtml全体のpaddingとmarginをoffにする
+そもそもの設計方法として，余白を減らすのではなく，増やしていく方が良さそう？
+
+MEMO: 何回も忘れるからメモしとく
+padding:要素内の余白
+margin:要素外の余白
+引数は
+・<上下> <左右>
+・<上> <左右> <下>
+・上から時計回り
+など
+*/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
 /* TODO:ダークモード対応(余力があれば) */
 /* @media (prefers-color-scheme: dark) {
     :root {
@@ -21,30 +40,37 @@
     }
 } */
 
-/* body全体の設定(中央ぞろえとかダークモードとか) */
+/*
+body全体の設定(中央ぞろえとかダークモードとか)
+どこかで見たけど，heightは100vh / widthは100%指定が良いらしい
+*/
 body {
-    width: 100%;
     text-align: center;
     font-family: 'Source Code Pro', 'New Tegomin', monospace;
+    display: flex;
+    flex-flow: column;
+    max-height: 100vh;
+    min-height: 100vh;
+    width: 100%;
     /* background-color: var(--bgcolor);
     color: var(--txtcolor); */
 }
 
 
 /* ヘッダー */
-header {
-    margin: 5px 20px;
-}
 /* flex boxという概念？で一列に整列して左右に分ける */
+div.navbar {
+    display: flex;
+    padding: .2em .3em .5em;
+}
 span.navbar-ele.right {
     margin-left: auto;
 }
-div.navbar {
-    display: flex;
-}
-
 /* モード表示に立体感 */
 span.navbar-ele {
+    margin: 0 .3em;
+    padding: .1em .3em;
+    background-color: #f0f8ff;
     box-shadow: 5px 7px 5px #b0c4de;
 }
 span.navbar-ele:hover {
@@ -52,7 +78,7 @@ span.navbar-ele:hover {
 }
 
 
-/* 設定画面のボタン */
+/* 設定画面のボタンの見た目をボタンっぽくする */
 span.button {
     display: inline-block;
     text-align: center;
@@ -66,12 +92,15 @@ span.button {
 span.button:hover {
     box-shadow: none;
 }
-
 /* 設定画面のボタン配置 */
 div.setting-title {
     font-size: x-large;
     margin: .5em auto .5em;
 }
+div.settings {
+    margin: .2em 0;
+}
+/* リスト要素を左寄せしてドット消す / リスト要素の集合を中央揃え */
 ul.align-center.no-dot {
     display: inline-block;
     list-style: none;
@@ -82,22 +111,43 @@ li.align-left {
 }
 
 
+/* clock/stop watch/timerのメイン部分をレスポンシブ対応 */
+@media screen and (min-width: 1024px) { /* 幅が1024px以上(PC)用 */
+    div.main {
+        width: 100%;
+        font-size: 12em;
+        flex: 1;
+    }
+}
+@media screen and (max-width: 1024px) { /* 幅が1024px以下(タブレット/スマホ横向き)用 */
+    div.main {
+        width: 100%;
+        font-size: 8em;
+        flex: 1;
+    }
+}
+/* font-size: 8emでも画面をはみ出るくらい狭い画面の場合はJS側でalertを出す */
+
 /* フォント指定．フォント切替対応 */
 div.font-Stick {
     font-family: 'Stick No Bills', 'Stick', serif;
-    font-size: 1.5em;
 }
 div.font-GrechenFuemen {
     font-family: 'Grechen Fuemen', 'New Tegomin', serif;
 }
 div.font-BonheurRoyale {
     font-family: 'Bonheur Royale', 'New Tegomin', serif;
-    font-size: 1.5em;
 }
 
-/* clock/stop watch/timerのメイン部分 */
-div.main {
-    font-size: 12em;
-    margin: auto;
-    width: 99%;
+
+/* デザイン的にフッターは出来るだけ小さく / headerからfooterまで一画面に収めたい */
+footer {
+    width: 100%;
+    background-color: #f0f8ff;
+    box-shadow: 5px 5px 5px #b0c4de;
+    margin: 0 .4em .4em 0;
+    padding: .1em .5em .1em;
+}
+p.copyright {
+    font-size: small;
 }

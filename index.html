@@ -19,20 +19,15 @@
     </head>
 
     <body>
-        <!--
-            bootstrap使えば簡単にできるけど，使うか迷う(CSS/JSの練習中やしな．．．)
-            → 使わないことにした．無しで頑張る
-        -->
         <header>
             <div class="navbar">
                 <span role="button" class="navbar-ele left" id="mainSwitch">
                     <div class="navbar-ele left" id="now"></div>
                 </span>
-                <span role="button" onclick="showSettings()" class="navbar-ele right">
+                <span role="button" onclick="switchSettingsVisibility()" class="navbar-ele right">
                     <div class="navbar-ele right" id="mode"></div>
                 </span>
-                <div class="navbar-ele right">&emsp;/&emsp;</div>
-                <span role="button" onclick="showSettings()" class="navbar-ele">
+                <span role="button" onclick="switchSettingsVisibility()" class="navbar-ele">
                     <div class="navbar-ele right" id="font"></div>
                 </span>
             </div>
@@ -42,7 +37,7 @@
 
         <!-- ヘッダー部分の現在の設定をクリックするとこの部分が出現 -->
         <div class="settings" id="settings" style="visibility: hidden;">
-            <div class="setting-title">settings</div>
+            <!-- <div class="setting-title">settings</div> -->
             <ul class="align-center no-dot">
                 <li class="align-left">
                     <div class="mode-selectors">
@@ -69,7 +64,6 @@
             </ul>
         </div>
 
-
         <!-- メイン部分．JSで内容を切り替え． -->
         <div class="main">
             <div id="font-Stick" class="font-Stick"></div>
@@ -77,9 +71,10 @@
             <div id="font-BonheurRoyale" class="font-BonheurRoyale"></div>
         </div>
 
-        <!-- <footer>
+        <!-- デザインの都合上，一時停止中のみ表示する -->
+        <footer style="visibility: hidden;" id="footer">
             <p class="copyright">Yuto02D2 &copy; 2021 All rights reserved.</p>
-        </footer> -->
+        </footer>
 
         <script src="./index.js"></script>
     </body>
